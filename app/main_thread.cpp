@@ -32,7 +32,7 @@ protected:
 
 		while(true) {
 			wdt.reset();
-			printf("PING!\n");
+			printf("[%llu] PING!\n", (unsigned long long) lwiot_tick_ms());
 			lwiot_sleep(1000);
 		}
 	}
