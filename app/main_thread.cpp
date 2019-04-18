@@ -25,8 +25,8 @@ protected:
 	{
 		size_t free_size;
 
-		free_size = heap_caps_get_free_size(0);
-		print_dbg("Free heap size: %u\n", free_size);
+		free_size = heap_caps_get_free_size(MALLOC_CAP_DEFAULT);
+		print_dbg("Free heap size: %uKiB\n", free_size / 1024);
 
 		wdt.enable(2000);
 
