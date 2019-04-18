@@ -15,42 +15,37 @@
 #include <lwiot/log.h>
 #include <lwiot/stl/string.h>
 #include <lwiot/io/watchdog.h>
+#include <lwiot/util/application.h>
 
 #include <lwiot/stl/move.h>
 
-class MainThread : public lwiot::Thread {
-public:
-	explicit MainThread(const char *arg) : Thread("main-thread", (void*)arg)
-	{
-	}
-
+struct Application : public lwiot::Functor {
 protected:
-
 	void run() override
 	{
 		size_t free_size;
 
 		free_size = heap_caps_get_free_size(0);
-		print_dbg("Application started!\n");
 		print_dbg("Free heap size: %u\n", free_size);
 
 		wdt.enable(2000);
 
 		while(true) {
 			wdt.reset();
-			print_dbg("PING!\n");
+			printf("PING!\n");
 			lwiot_sleep(1000);
 		}
 	}
 };
 
-static MainThread *mt;
 
 extern "C" void main_start(void)
 {
-	printf("Creating main thread..");
-	mt = new MainThread(nullptr);
-	printf(" [DONE]\n");
-	mt->start();
+	Application runner;
+	print_dbg("Starting application...\n");
+
+	lwiot::Application application(runner);
+
+	application.start();
 }
 
