@@ -24,8 +24,8 @@ In order to successfully build the application, the following CMake options are 
 - APP_PATH > Path from build location to application directory
 - CMAKE_TOOLCHAIN_FILE > Toolchain file
 - CMAKE_BUILD_TYPE > CMake build configuration
-- CMAKE_C_COMPILER > Should be set to xtensa-lx106-elf-gcc
-- CMAKE_CXX_COMPILER > Should be set to xtensa-lx106-elf-g++
+- CMAKE_C_COMPILER > Should be set to xtensa-esp32-elf-gcc
+- CMAKE_CXX_COMPILER > Should be set to xtensa-esp32-elf-g++
 
 Please note that the build location should be `PROJECT_BUILD_DIR/cmake-${CMAKE_BUILD_TYPE}`.
 
@@ -44,7 +44,7 @@ $ mkdir cmake-debug
 $ cd cmake-debug
 $ cmake -DLWIOT_INSTALL_PATH=/opt/lwiot/esp32 -DAPP_PATH=../.. -DESP32_IDF_PATH=/opt/esp32-idf \
 -DESP32_TOOLCHAIN_PATH=/opt/xtensa-esp32-elf -DCMAKE_TOOLCHAIN_FILE=../../cmake/esp32.cmake \
--DCMAKE_C_COMPILER=xtensa-lx106-elf-gcc -DCMAKE_CXX_COMPILER=xtensa-lx106-elf-g++
+-DCMAKE_C_COMPILER=xtensa-esp32-elf-gcc -DCMAKE_CXX_COMPILER=xtensa-esp32-elf-g++
 $ make
 $ cd ../..
 $ make
