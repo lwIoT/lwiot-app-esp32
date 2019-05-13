@@ -28,6 +28,26 @@ add_custom_target(
 	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
 )
 
+add_custom_target(
+	flash
+	COMMAND touch main/main.c
+	COMMAND LWIOT_INSTALL_DIR=${LWIOT_INSTALL_PATH} BUILD_TYPE=${CMAKE_BUILD_TYPE} make all flash
+	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
+add_custom_target(
+	debug
+	COMMAND touch main/main.c
+	COMMAND LWIOT_INSTALL_DIR=${LWIOT_INSTALL_PATH} BUILD_TYPE=${CMAKE_BUILD_TYPE} make all flash monitor
+	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
+add_custom_target(
+	monitor
+	COMMAND LWIOT_INSTALL_DIR=${LWIOT_INSTALL_PATH} BUILD_TYPE=${CMAKE_BUILD_TYPE} make monitor
+	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
 SET(SOURCES
 	app/main_thread.cpp
 )
