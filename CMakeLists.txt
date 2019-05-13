@@ -21,6 +21,13 @@ CHECK_INCLUDE_FILES (arpa/inet.h HAVE_INET_H)
 
 include_directories(${ESP32_INCLUDE_DIRECTORIES})
 
+add_custom_target(
+	link
+	COMMAND touch main/main.c
+	COMMAND LWIOT_INSTALL_DIR=${LWIOT_INSTALL_PATH} BUILD_TYPE=${CMAKE_BUILD_TYPE} make
+	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
 SET(SOURCES
 	app/main_thread.cpp
 )
